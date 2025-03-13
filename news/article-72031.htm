@@ -2,22 +2,22 @@
 <html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://winvpn.github.io/news/article-71368.htm" />
+        <link rel="canonical" href="https://winvpn.github.io/news/article-72031.htm" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kafka消费者rebalanced异常分析</title>
-        <meta name="description" content="异常 org.apache.kafka.clients.consumer.CommitFailedException: Commit cannot  be completed since the gr" />
+    <title>单链表之按顺序插入元素</title>
+        <meta name="description" content="单向链表第二种添加方式： 按照排名将节点插入指定位置，如果指定位置有节点，就提示添加失败！  需要按照编号的顺序添加  首先找到新添加节点的位置，通过辅助变量，遍历来搞定 新的节点.next = te" />
         <link rel="icon" href="/assets/website/img/bifrostvnode/favicon.ico" type="image/x-icon"/>
 
     <meta name="author" content="Win VPN 订阅机场节点中文网">
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://winvpn.github.io/news/article-71368.htm" />
+    <meta property="og:url" content="https://winvpn.github.io/news/article-72031.htm" />
     <meta property="og:site_name" content="Win VPN 订阅机场节点中文网" />
-    <meta property="og:title" content="Kafka消费者rebalanced异常分析" />
-    <meta property="og:image" content="https://winvpn.github.io/uploads/20240911/8776f09b337422942d37b039cf4aba72.webp" />
-        <meta property="og:release_date" content="2025-03-11T07:46:10" />
-    <meta property="og:updated_time" content="2025-03-11T07:46:10" />
-        <meta property="og:description" content="异常 org.apache.kafka.clients.consumer.CommitFailedException: Commit cannot  be completed since the gr" />
+    <meta property="og:title" content="单链表之按顺序插入元素" />
+    <meta property="og:image" content="https://winvpn.github.io/uploads/20240911/374572b2fad29ef0484cb6e1c9a0cc66.webp" />
+        <meta property="og:release_date" content="2025-03-12T06:07:00" />
+    <meta property="og:updated_time" content="2025-03-12T06:07:00" />
+        <meta property="og:description" content="单向链表第二种添加方式： 按照排名将节点插入指定位置，如果指定位置有节点，就提示添加失败！  需要按照编号的顺序添加  首先找到新添加节点的位置，通过辅助变量，遍历来搞定 新的节点.next = te" />
     
     <meta name="applicable-device" content="pc,mobile" />
     <meta name="renderer" content="webkit" />
@@ -26,7 +26,7 @@
     <meta name="robots" content="max-image-preview:large" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Kafka消费者rebalanced异常分析">
+    <meta name="apple-mobile-web-app-title" content="单链表之按顺序插入元素">
     <meta name="format-detection" content="telephone=no">
 
     <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
@@ -108,7 +108,7 @@
         <img src="/assets/website/img/bifrostvnode/footer-car.png" alt="Title">
         <div class="container">
             <div class="page-title-content">
-                <h1>Kafka消费者rebalanced异常分析</h1>
+                <h1>单链表之按顺序插入元素</h1>
                 <ul>
                     <li>
                         <a href="/">首页</a>
@@ -132,10 +132,10 @@
             <div class="row">
                 <div class="col-md-9">
                                     <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
-                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2> <a id="_0" rel="nofollow"></a>异常</h2> <pre><code class="prism language-java"><span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>kafka<span class="token punctuation">.</span>clients<span class="token punctuation">.</span>consumer<span class="token punctuation">.</span></span>CommitFailedException</span><span class="token operator">:</span> <span class="token class-name">Commit</span> cannot  be completed since the group has already rebalanced and assigned the  partitions <span class="token keyword">to</span> <span class="token namespace">another</span> <span class="token class-name"><span class="token namespace">member<span class="token punctuation">.</span></span> This</span> means that the time between  subsequent calls <span class="token keyword">to</span> <span class="token namespace">poll</span><span class="token punctuation">(</span><span class="token punctuation">)</span> was longer than the configured  max<span class="token punctuation">.</span>poll<span class="token punctuation">.</span>interval<span class="token punctuation">.</span>ms<span class="token punctuation">,</span> which typically implies that the poll loop is  spending too much time message <span class="token class-name"><span class="token namespace">processing<span class="token punctuation">.</span></span> You</span> can address <span class="token keyword">this</span> either  by increasing the session timeout or by reducing the maximum size of   batches returned in <span class="token function">poll</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">with</span> <span class="token namespace">max<span class="token punctuation">.</span>poll<span class="token punctuation">.</span>records<span class="token punctuation">.</span></span> </code></pre> <p>大概意思：该Consumer不能提交offset了，应为分区已经分配给另一个消费者。是因为你的两次poll的间隔(<strong>poll会发送心跳</strong>)大于你要报告给server的最大时间(<strong>max.poll.interval.ms</strong>)。解决办法是，要么增加超时时间，要么减少每次poll回来的消息个数(<strong>max.poll.records</strong>)。</p> <h2> <a id="_14" rel="nofollow"></a>参数解释</h2> <p>max.poll.interval.ms：两次poll的最大间隔时间，超过该时间则被kafka认为是挂掉了。<br /> 需要注意的是，如果我们采取的是先消费完拉取的任务，再提交offset的模式，要确保消费完这些任务的时间小于max.poll.interval.ms。<br /> 但是一般情况下我们采用的是另起线程或者线程池的方式消费消息。</p> <p>session.timeout.ms：检测心跳的最长时间间隔。如果超过该时间没有检测到心跳，则认为该消费者挂掉。</p> <p>poll(timeout)：timeout的表示，如果主题中有消息，则拉取，否则等待timeout的时间后再拉取。调用poll方法的时候回发送心跳。</p> <p>max.poll.records：最大拉取多少条记录。</p> <p><strong>注</strong>：在0.10.1之后的版本中，poll会启动两个线程，一个用于拉取消息。一个用于专门上报心跳，间隔是heartbeat.interval.ms。注意这个时间要小于session.timeout.ms。<br /> 这样的好处是：就算消费消息的时间超过了max.poll.interval.ms，也会应为有专门的线程在上报心跳，而不会将该消费者移除。</p> </p></div> 			                <div class="clearfix"></div>
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>单向链表第二种添加方式：</p> <p>按照排名将节点插入指定位置，如果指定位置有节点，就提示添加失败！</p> <p><img fetchpriority="high" decoding="async" alt="" height="327" src="http://img.555519.xyz/uploads3/20220902/c87f9d051e38d586343d97985126a749.jpg"></p> <p>需要按照编号的顺序添加</p> <ul> <li>首先找到新添加节点的位置，通过辅助变量，遍历来搞定</li> <li>新的节点.next = temp.next</li> <li>将temp.next = 新的节点</li> </ul> <pre><code class="language-java">//第二种方式插入节点     //按照英雄排名插入到指定位置，如果有这个排名，则提示插入失败     public void addNode2(HeroNode heroNode){         //因为我们找的temp是位于添加位置的前一个节点，否则添加不了         HeroNode temp = head;         boolean flag = false;   //flag标志添加的编号是否存在，默认为false         while(true){             if(temp.next == null){  //说明temp已经在链表的最后                 break;             }             if(temp.next.no &gt; heroNode.no){    //位置已找到                 break;             }else if(temp.next.no == heroNode.no){   //说明要添加的heroNode的no已存在于链表中                 flag = true;   //说明编号存在                 break;             }             temp = temp.next;   //后移，遍历当前链表         }         if(flag){  //如果flag为真，则说明heroNode.no已存在，打印提示信息             System.out.println("添加失败！此英雄的编号"+heroNode.no+"存在");         }else{             //插入到链表中，temp后面             heroNode.next = temp.next;             temp.next = heroNode;         }</code></pre> <p>测试：<img decoding="async" alt="" height="340" src="http://img.555519.xyz/uploads3/20220902/c45216989fdb603c6f5ef8b55c90d005.jpg"></p> </div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
-                                        <p>上一个：<a href="/news/article-70705.htm">宠物美容师要培训多久（宠物美容师宠物美容培训费用）</a></p>
-                                        <p>下一个：<a href="/news/article-71369.htm">中牧疫苗生物官网查询（中牧实业股份有限公司疫苗）</a></p>
+                                        <p>上一个：<a href="/news/article-72030.htm">JAVA8 | 日期时间API（LocalDate、LocalDateTime、LocalTime）</a></p>
+                                        <p>下一个：<a href="/news/article-72688.htm">有没有收狗的平台（哪有收狗的电话）</a></p>
                                     </div>
                                 </div>
                 <div class="col-md-3">
@@ -145,16 +145,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2025-3-6-node-share-links.htm" title="Win VPN | 3月6日19.8M/S|免费V2ray/Clash/Shadowrocket/SSR免费节点订阅分享">Win VPN | 3月6日19.8M/S|免费V2ray/Clash/Shadowrocket/SSR免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-3-8-free-v2ray-subscribe.htm" title="Win VPN | 3月8日20.5M/S|免费V2ray/SSR/Shadowrocket/Clash免费节点订阅分享">Win VPN | 3月8日20.5M/S|免费V2ray/SSR/Shadowrocket/Clash免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-3-13-free-node-subscribe-links.htm" title="Win VPN | 3月13日22.9M/S|免费V2ray/SSR/Clash/Shadowrocket免费节点订阅分享">Win VPN | 3月13日22.9M/S|免费V2ray/SSR/Clash/Shadowrocket免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/news/article-69414.htm" title="动物疫苗的正确使用方法是什么意思（动物疫苗注射注意事项）">动物疫苗的正确使用方法是什么意思（动物疫苗注射注意事项）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-3-10-free-node-subscribe.htm" title="Win VPN | 3月10日20.8M/S|免费SSR/V2ray/Clash/Shadowrocket免费节点订阅分享">Win VPN | 3月10日20.8M/S|免费SSR/V2ray/Clash/Shadowrocket免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-69413.htm" title="Netty之非阻塞处理">Netty之非阻塞处理</a></li>
+                        <li class="py-2"><a href="/news/article-66231.htm" title="宠物粮食加工厂设备有哪些厂家的品牌呢（宠物粮食加工设备贵吗）">宠物粮食加工厂设备有哪些厂家的品牌呢（宠物粮食加工设备贵吗）</a></li>
                         <li class="py-2"><a href="/news/article-72031.htm" title="单链表之按顺序插入元素">单链表之按顺序插入元素</a></li>
-                        <li class="py-2"><a href="/news/article-71369.htm" title="中牧疫苗生物官网查询（中牧实业股份有限公司疫苗）">中牧疫苗生物官网查询（中牧实业股份有限公司疫苗）</a></li>
-                        <li class="py-2"><a href="/news/article-70704.htm" title="养猫后家里味道太大怎么处理（养猫后家里味道太大怎么处理 喷空气清新剂管用吗）">养猫后家里味道太大怎么处理（养猫后家里味道太大怎么处理 喷空气清新剂管用吗）</a></li>
-                        <li class="py-2"><a href="/news/article-72030.htm" title="JAVA8 | 日期时间API（LocalDate、LocalDateTime、LocalTime）">JAVA8 | 日期时间API（LocalDate、LocalDateTime、LocalTime）</a></li>
-                        <li class="py-2"><a href="/news/article-70074.htm" title="开个宠物食品店需要什么证 开个宠物食品店需要什么证件">开个宠物食品店需要什么证 开个宠物食品店需要什么证件</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-7-node-share.htm" title="Win VPN | 3月7日19.3M/S|免费Clash/V2ray/SSR/Shadowrocket免费节点订阅分享">Win VPN | 3月7日19.3M/S|免费Clash/V2ray/SSR/Shadowrocket免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-66230.htm" title="Python生成迷宫">Python生成迷宫</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-9-free-high-speed-nodes.htm" title="Win VPN | 3月9日22M/S|免费Shadowrocket/Clash/V2ray/SSR免费节点订阅分享">Win VPN | 3月9日22M/S|免费Shadowrocket/Clash/V2ray/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-72689.htm" title="国内动物疫苗上市公司名单（中国动物疫苗十强上市公司）">国内动物疫苗上市公司名单（中国动物疫苗十强上市公司）</a></li>
+                        <li class="py-2"><a href="/news/article-70705.htm" title="宠物美容师要培训多久（宠物美容师宠物美容培训费用）">宠物美容师要培训多久（宠物美容师宠物美容培训费用）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-3-free-v2ray-subscribe.htm" title="Win VPN | 3月3日19.6M/S|免费Clash/Shadowrocket/V2ray/SSR免费节点订阅分享">Win VPN | 3月3日19.6M/S|免费Clash/Shadowrocket/V2ray/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-68760.htm" title="手工宠物零食怎么创业 手工宠物零食怎么创业PPT">手工宠物零食怎么创业 手工宠物零食怎么创业PPT</a></li>
                     </ul>
     </div>
 </div>
