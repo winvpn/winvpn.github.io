@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://winvpn.github.io/news/article-90184.htm" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synchronized锁及其膨胀</title>
+        <meta name="description" content="一、序言 在并发编程中，synchronized锁因其使用简单，在线程间同步被广泛应用。下面对其原理及锁升级过程进行探究。 二、如何使用 1、修饰实例方法 当实例方法被synchronized修饰时，" />
+        <link rel="icon" href="/assets/website/img/bifrostvnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Win VPN 订阅机场节点中文网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://winvpn.github.io/news/article-90184.htm" />
+    <meta property="og:site_name" content="Win VPN 订阅机场节点中文网" />
+    <meta property="og:title" content="Synchronized锁及其膨胀" />
+    <meta property="og:image" content="https://winvpn.github.io/uploads/20240911/ed682d4b4c85fb17b070d80944f40637.webp" />
+        <meta property="og:release_date" content="2025-04-07T09:01:30" />
+    <meta property="og:updated_time" content="2025-04-07T09:01:30" />
+        <meta property="og:description" content="一、序言 在并发编程中，synchronized锁因其使用简单，在线程间同步被广泛应用。下面对其原理及锁升级过程进行探究。 二、如何使用 1、修饰实例方法 当实例方法被synchronized修饰时，" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Synchronized锁及其膨胀">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+
+    <link rel="stylesheet" href="/assets/website/css/bifrostvnode/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/bifrostvnode/meanmenu.css">
+    <link rel="stylesheet" href="/assets/website/css/bifrostvnode/boxicons.min.css">
+    <link rel="stylesheet" href="/assets/website/css/bifrostvnode/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/bifrostvnode/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/bifrostvnode/magnific-popup.min.css">
+    <link rel="stylesheet" href="/assets/website/css/bifrostvnode/animate.css">
+    <link rel="stylesheet" href="/assets/website/css/bifrostvnode/style.css">
+    <link rel="stylesheet" href="/assets/website/css/bifrostvnode/responsive.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4DEHHM297E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4DEHHM297E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <div class="loader">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="spinner">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar-area fixed-top">
+        <div class="mobile-nav">
+            <a href="/" class="logo">
+                Bifrostv Node
+            </a>
+        </div>
+        <div class="main-nav">
+            <div class="container">
+                <nav class="navbar navbar-expand-md navbar-light">
+                                        <a class="navbar-brand" href="/">
+                        <span>Win VPN</span>
+                    </a>
+                                        <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto">
+                                                        <li class="nav-item">
+                                <a href="/" class="nav-link">首页</a>
+                            </li>
+                                                        <li class="nav-item">
+                                <a href="/free-nodes/" class="nav-link">免费节点</a>
+                            </li>
+                                                        <li class="nav-item">
+                                <a href="/paid-subscribe/" class="nav-link">推荐机场</a>
+                            </li>
+                                                        <li class="nav-item">
+                                <a href="/news/" class="nav-link">新闻资讯</a>
+                            </li>
+                                                        <li class="nav-item">
+                                <a href="/client.htm" class="nav-link">客户端</a>
+                            </li>
+                                                    </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="page-title-area">
+        <img src="/assets/website/img/bifrostvnode/footer-car.png" alt="Title">
+        <div class="container">
+            <div class="page-title-content">
+                <h1>Synchronized锁及其膨胀</h1>
+                <ul>
+                    <li>
+                        <a href="/">首页</a>
+                    </li>
+                    <li>
+                        <i class='bx bx-chevron-right'></i>
+                    </li>
+                    <li>
+                        <a href="/news/">新闻资讯</a>
+                    </li>
+                    <li>
+                        <i class='bx bx-chevron-right'></i>
+                    </li>
+                    <li>正文</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <section class="process-area pt-100 pb-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<h3 id="一序言">一、序言</h3> <p>在并发编程中，<code>synchronized</code>锁因其使用简单，在线程间同步被广泛应用。下面对其原理及锁升级过程进行探究。</p> <h3 id="二如何使用">二、如何使用</h3> <h5 id="1修饰实例方法">1、修饰实例方法</h5> <p>当实例方法被synchronized修饰时，通过当前实例调用此方法的所有线程共用一把锁，不同对象调用此方法线程间互不影响。</p> <pre><code class="language-java">public class A {     public synchronized void func() {          } }</code></pre> <p>当使用synchronized锁修饰实例方法，锁添加在当前类的实例上，有多少个实例可添加多少把锁。</p> <h5 id="2修饰代码块">2、修饰代码块</h5> <p>修饰代码块比修饰方法颗粒度更小。当实例方法代码块被synchronized修饰时，通过当前实例调用此方法的所有线程共用一把锁，不同对象调用此方法线程间互不影响。</p> <pre><code class="language-java">public class B {     public void func() {         synchronized (this) {                      }     } }</code></pre> <p>当使用synchronized锁修饰代码块，锁添加在当前类的实例上，有多少个实例可添加多少把锁。</p> <h5 id="3修饰静态方法">3、修饰静态方法</h5> <p>当静态方法被synchronized修饰时，整个JVM所有调用此方法的线程均受同一个锁的约束。</p> <pre><code class="language-java">public class C {     public static synchronized void func() {          } }</code></pre> <p>当使用synchronized锁修饰静态方法，锁添加在当前类的<code>类对象</code>上，最多添加一把锁。</p> <blockquote> <p>非必要不使用synchronized修饰静态方法</p> </blockquote> <h3 id="三锁的升级">三、锁的升级</h3> <p>Java 8所使用的synchronized锁是经过优化后的，存在<code>偏向锁</code>、<code>轻量级锁</code>、<code>重量级锁</code>等状态。</p> <h4 id="一偏向锁">（一）偏向锁</h4> <p>线程间不存在锁的竞争行为，至多只有一个线程有获取锁的需求，常见场景为<code>单线程程序</code>。</p> <h5 id="1识别方法">1、识别方法</h5> <p>判断是不是偏向锁的标识是查看调用此方法的线程是否有且仅有一个。</p> <p>在多线程编程里，被锁修饰的方法仅被单一线程调用几乎不存在，因此偏向锁比较鸡肋：如果能够明确单一线程调用目标方法，使用无锁编程更为合适。</p> <h5 id="2性能比较">2、性能比较</h5> <p>无锁与偏向锁的性能差异非常接近，几乎可以忽略不计。</p> <h4 id="二轻量级锁">（二）轻量级锁</h4> <p>线程间存在锁的<code>伪竞争行为</code>，即同一时刻绝对不会存在两个线程申请获取锁，各线程尽管都有使用锁的需求，但是是交替使用锁。</p> <h5 id="1识别方法-1">1、识别方法</h5> <p>当有两个及以上线程调用被锁修饰的方法时，那么至少能确定是轻量级锁。</p> <h5 id="2性能比较-1">2、性能比较</h5> <p>轻量级锁由于同一时刻不存在两个线程互相竞争锁，因此不存在线程<code>阻塞-唤醒</code>的上下文切换，因此性能相对重量级锁要高很多。</p> <h4 id="三重量级锁">（三）重量级锁</h4> <p>线程间存在锁的<code>实质性竞争</code>行为，线程间都有获取锁的需求，但是时间不可交错，互斥锁的阻塞等待。</p> <h5 id="1识别方法-2">1、识别方法</h5> <p>当能够肯定至少有两个及以上线程调用被锁修饰的方法时，线程调用方法是随机的，那么大概率是重量级锁。</p> <h5 id="2性能比较-2">2、性能比较</h5> <p>重量级锁由于涉及到线程阻塞-唤醒的上下文切换，造成相比较与无锁状态，效率低很多。</p> <h3 id="四其它内容">四、其它内容</h3> <h4 id="一锁的性质">（一）锁的性质</h4> <h5 id="1公平性">1、公平性</h5> <p>synchronized锁是<code>非公平锁</code>，没有FIFO队列机制保障竞争锁的线程一定有几率获得锁。</p> <h5 id="2重入性">2、重入性</h5> <p>synchronized锁是<code>可重入锁</code>，可重入意味着嵌套调用不会产生死锁问题。</p> <h5 id="3乐悲观锁">3、乐（悲）观锁</h5> <p>synchronized锁是一种悲观锁，通过加锁实现线程间同步。</p> <h4 id="二理解重量级锁">（二）理解重量级锁</h4> <p>在多线程环境下，如果使用synchronized锁，那么大概率会升级到重量级锁。偏向锁和轻量级锁非刻意为之，很难存在，更大的意义是对比帮助理解重量级锁的性能。</p> <p>重量级锁尽管会对性能产生很大影响，但是依旧是解决线程间同步的有效手段。</p> <h5 id="1选用锁的建议">1、选用锁的建议</h5> <p>当被锁修饰的方法或者代码块执行时间较<code>长</code>时，选用基于线程阻塞-唤醒切换上下文的方式进行线程同步效率相对较高。</p> <p>当被锁修饰的方法或者代码块执行时间较<code>短</code>时，应选用其它替代锁，比如自旋锁等。</p> <h4 id="三理解synchronized锁">（三）理解synchronized锁</h4> <p>在实际多线程场景开发中，<code>synchronized</code>锁大概率会升级到重量级锁，因其单向升级的特点，重量级状态的<code>synchronized</code>锁可能会对实际业务的并发产生不利影响，手动选用其它锁可能会更合适。</p> <p><code>synchronized</code>锁仅可用于解决同一进程内不同线程间同步，对于分布式项目跨进城线程同步依赖于分布式锁，<code>synchronized</code>锁更多的意义是理解锁的过程。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-90183.htm">docker-compose ports 与 expose 的区别</a></p>
+                                        <p>下一个：<a href="/news/article-91529.htm">宠物打完疫苗多久测抗体最准确（宠物打完疫苗要做抗体检测吗）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-3-free-v2ray-subscribe.htm" title="Win VPN | 3月3日19.6M/S|免费Clash/Shadowrocket/V2ray/SSR免费节点订阅分享">Win VPN | 3月3日19.6M/S|免费Clash/Shadowrocket/V2ray/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-19-clash-v2ray-ss-ssr.htm" title="Win VPN | 3月19日21.1M/S|免费SSR/Clash/Shadowrocket/V2ray免费节点订阅分享">Win VPN | 3月19日21.1M/S|免费SSR/Clash/Shadowrocket/V2ray免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-77406.htm" title="开宠物店一个月能挣多少钱（开个宠物店一个月能赚多少钱）">开宠物店一个月能挣多少钱（开个宠物店一个月能赚多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-69413.htm" title="Netty之非阻塞处理">Netty之非阻塞处理</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-13-free-node-subscribe-links.htm" title="Win VPN | 3月13日22.9M/S|免费V2ray/SSR/Clash/Shadowrocket免费节点订阅分享">Win VPN | 3月13日22.9M/S|免费V2ray/SSR/Clash/Shadowrocket免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-66868.htm" title="人用疫苗和兽用疫苗研发区别 人用疫苗和兽用疫苗研发区别在哪">人用疫苗和兽用疫苗研发区别 人用疫苗和兽用疫苗研发区别在哪</a></li>
+                        <li class="py-2"><a href="/news/article-76723.htm" title="MySQL的聚合函数是否忽略NULL">MySQL的聚合函数是否忽略NULL</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-7-node-share.htm" title="Win VPN | 3月7日19.3M/S|免费Clash/V2ray/SSR/Shadowrocket免费节点订阅分享">Win VPN | 3月7日19.3M/S|免费Clash/V2ray/SSR/Shadowrocket免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-81541.htm" title="狗粮品牌十大排行榜最新（狗粮品牌十大排行榜最新）">狗粮品牌十大排行榜最新（狗粮品牌十大排行榜最新）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-6-node-share-links.htm" title="Win VPN | 3月6日19.8M/S|免费V2ray/Clash/Shadowrocket/SSR免费节点订阅分享">Win VPN | 3月6日19.8M/S|免费V2ray/Clash/Shadowrocket/SSR免费节点订阅分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">91</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer>
+        <div class="container">
+            <div class="copyright-area">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="copyright-item text-center">
+                                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">Win VPN 订阅机场节点中文网</a> 版权所有
+                            <br />
+                            Powered by WordPress
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script data-cfasync="false" src="/assets/website/js/frontend/bifrostvnode/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/bifrostvnode/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/bifrostvnode/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/bifrostvnode/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/bifrostvnode/jquery.meanmenu.js"></script>
+    <script src="/assets/website/js/frontend/bifrostvnode/jquery.mixitup.min.js"></script>
+    <script src="/assets/website/js/frontend/bifrostvnode/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/bifrostvnode/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/website/js/frontend/bifrostvnode/jquery.ajaxchimp.min.js"></script>
+    <script src="/assets/website/js/frontend/bifrostvnode/form-validator.min.js"></script>
+    <script src="/assets/website/js/frontend/bifrostvnode/contact-form-script.js"></script>
+    <script src="/assets/website/js/frontend/bifrostvnode/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/bifrostvnode/custom.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
