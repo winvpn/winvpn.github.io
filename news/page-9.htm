@@ -2,22 +2,18 @@
 <html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://winvpn.github.io/news/article-90183.htm" />
+        <link rel="canonical" href="https://winvpn.github.io/news/page-9.htm" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>docker-compose ports 与 expose 的区别</title>
-        <meta name="description" content="导读 这篇文章主要介绍了docker-compose ports和expose的区别详解，文中通过示例代码介绍的非常详细，对大家的学习或者工作具有一定的参考学习价值，需要的朋友们下面随着小编来一起学习" />
+    <title>新闻资讯 - Win VPN 订阅机场节点中文网 - 第8页</title>
         <link rel="icon" href="/assets/website/img/bifrostvnode/favicon.ico" type="image/x-icon"/>
 
     <meta name="author" content="Win VPN 订阅机场节点中文网">
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://winvpn.github.io/news/article-90183.htm" />
+    <meta property="og:type" content="webpage" />
+    <meta property="og:url" content="https://winvpn.github.io/news/page-9.htm" />
     <meta property="og:site_name" content="Win VPN 订阅机场节点中文网" />
-    <meta property="og:title" content="docker-compose ports 与 expose 的区别" />
-    <meta property="og:image" content="https://winvpn.github.io/uploads/20240911/52d41106cc54c04e7dfc0f476f65fba7.webp" />
-        <meta property="og:release_date" content="2025-04-07T09:01:30" />
-    <meta property="og:updated_time" content="2025-04-07T09:01:30" />
-        <meta property="og:description" content="导读 这篇文章主要介绍了docker-compose ports和expose的区别详解，文中通过示例代码介绍的非常详细，对大家的学习或者工作具有一定的参考学习价值，需要的朋友们下面随着小编来一起学习" />
+    <meta property="og:title" content="新闻资讯 - Win VPN 订阅机场节点中文网 - 第8页" />
+    <meta property="og:image" content="/assets/website/img/bifrostvnode/favicon.ico" />
     
     <meta name="applicable-device" content="pc,mobile" />
     <meta name="renderer" content="webkit" />
@@ -26,7 +22,7 @@
     <meta name="robots" content="max-image-preview:large" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="docker-compose ports 与 expose 的区别">
+    <meta name="apple-mobile-web-app-title" content="新闻资讯 - Win VPN 订阅机场节点中文网 - 第8页">
     <meta name="format-detection" content="telephone=no">
 
     <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
@@ -57,7 +53,7 @@
      crossorigin="anonymous"></script>
 </head>
 
-<body data-page="detail">
+<body data-page="category">
         <div class="loader">
         <div class="d-table">
             <div class="d-table-cell">
@@ -108,7 +104,7 @@
         <img src="/assets/website/img/bifrostvnode/footer-car.png" alt="Title">
         <div class="container">
             <div class="page-title-content">
-                <h1>docker-compose ports 与 expose 的区别</h1>
+                <h1>新闻资讯</h1>
                 <ul>
                     <li>
                         <a href="/">首页</a>
@@ -116,13 +112,7 @@
                     <li>
                         <i class='bx bx-chevron-right'></i>
                     </li>
-                    <li>
-                        <a href="/news/">新闻资讯</a>
-                    </li>
-                    <li>
-                        <i class='bx bx-chevron-right'></i>
-                    </li>
-                    <li>正文</li>
+                    <li>新闻资讯</li>
                 </ul>
             </div>
         </div>
@@ -131,13 +121,38 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
-                  				  				  				<div id="content_views" class="htmledit_views"> <table> <tbody> <tr> <td>导读</td> <td><strong>这篇文章主要介绍了docker-compose ports和expose的区别详解，文中通过示例代码介绍的非常详细，对大家的学习或者工作具有一定的参考学习价值，需要的朋友们下面随着小编来一起学习学习吧。</strong></td> </tr> </tbody> </table> <p>docker-compose中有两种方式可以暴露容器的端口：ports和expose。</p> <p><strong>ports</strong></p> <p>ports暴露容器端口到主机的任意端口或指定端口，用法：</p> <pre><code class="language-html hljs">ports:    - "80:80" # 绑定容器的80端口到主机的80端口    - "9000:8080" # 绑定容器的8080端口到主机的9000端口    - "443" # 绑定容器的443端口到主机的任意端口，容器启动时随机分配绑定的主机端口号</code></pre> <p>不管是否指定主机端口，使用ports都会将端口暴露给主机。</p> <p>容器中可以运行一些网络应用，要让外部也可以访问这些应用，可以通过 -P（大写） 或 -p （小写） 参数来指定端口映射。</p> <p>(1) 当使用-P标记时，Docker 会随机映射一个49000~49900的端口到内部容器开放的网络端口。</p> <p>使用docker ps可以看到，本地主机的 49155 被映射到了容器的 5000 端口。此时访问本机的 49155 端口即可访问容器内 web 应用提供的界面。</p> <pre><code class="language-html hljs">$ sudo docker run -d -P training/webapp python app.py    $ sudo docker ps -l    CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES    bc533791f3f5 training/webapp:latest python app.py 5 seconds ago Up 2 seconds 0.0.0.0:49155-&gt;5000/tcp nostalgic_morse</code></pre> <p>同样的，可以通过docker logs<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.linuxcool.com/"  rel="nofollow">命令</a>来查看应用的信息。</p> <pre><code class="language-html hljs">$ sudo docker logs -f nostalgic_morse    * Running on http://0.0.0.0:5000/    10.0.2.2 - - [23/May/2014 20:16:31] "GET / HTTP/1.1" 200 -    10.0.2.2 - - [23/May/2014 20:16:31] "GET /favicon.ico HTTP/1.1" 404 -</code></pre> <p>(2) -p（小写）则可以指定要映射的IP和端口，但是在一个指定端口上只可以绑定一个容器。支持的格式有 hostPort:containerPort、ip:hostPort:containerPort、ip::containerPort。</p> <p><strong>expose</strong></p> <p>expose暴露容器给link到当前容器的容器，用法：</p> <pre><code class="language-html hljs">expose: - "3000" - "8000"</code></pre> <p>以上指令将当前容器的端口3000和8000暴露给link到本容器的容器。</p> <p>和ports的区别是，expose不会将端口暴露给主机。</p> <p>以上就是本文的全部内容，希望对大家的学习有所帮助，也希望大家多多支持。<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.linuxprobe.com"  rel="nofollow">Linux就该这么学</a></p> </div> 			                <div class="clearfix"></div>
-                <div class="col-md-12 mt-5">
-                                        <p>上一个：<a href="/news/article-89416.htm">平移门十大品牌(平移门是什么样的)</a></p>
-                                        <p>下一个：<a href="/news/article-90184.htm">Synchronized锁及其膨胀</a></p>
-                                    </div>
-                                </div>
+                    <div class="xcblog-blog-list">
+                                                <div class="row item xcblog-blog-item" data-date="2025-03-01">
+                            <div class="col-md-3">
+                                <a href="/news/article-65523.htm" class="xcblog-blog-url">
+                                    <img src="https://www.freeclashnode.com/uploads/20231203/0007f886b401b8f6c588e5568a68aeb4.webp" alt="宠物美容师宠物美容（宠物美容师宠物美容培训学校天津）">
+                                </a>
+                            </div>
+                            <div class="col-md-9">
+                                <a href="/news/article-65523.htm" class="xcblog-blog-url">
+                                    <h3 class="xcblog-blog-title">宠物美容师宠物美容（宠物美容师宠物美容培训学校天津）</h3>
+                                </a>
+                                <p>
+                                    摘要：       本篇文章给大家谈谈宠物美容师宠物美容，以及宠物美容师宠物美容培训学校天津对应的知识点，希望对各位有所帮助，不要忘了收藏本站喔。本文目录一览：1、宠物美容师2、...                                        </p>
+                            </div>
+                        </div>
+                                                <div class="row item xcblog-blog-item" data-date="2025-03-01">
+                            <div class="col-md-3">
+                                <a href="/news/article-65522.htm" class="xcblog-blog-url">
+                                    <img src="https://www.freeclashnode.com/uploads/20231203/0007f886b401b8f6c588e5568a68aeb4.webp" alt="Springboot项目使用拦截器方法详解">
+                                </a>
+                            </div>
+                            <div class="col-md-9">
+                                <a href="/news/article-65522.htm" class="xcblog-blog-url">
+                                    <h3 class="xcblog-blog-title">Springboot项目使用拦截器方法详解</h3>
+                                </a>
+                                <p>
+                                    1. 创建一个拦截器并实现HandlerInterceptor接口 package com.leiyuan.bs.interceptor;  import org.springframework.we                                </p>
+                            </div>
+                        </div>
+                        
+                        <ul class="pagination"><li><a href="/news/page-8.htm">&laquo;</a></li> <li><a href="/news/">1</a></li><li><a href="/news/page-2.htm">2</a></li><li><a href="/news/page-3.htm">3</a></li><li><a href="/news/page-4.htm">4</a></li><li><a href="/news/page-5.htm">5</a></li><li><a href="/news/page-6.htm">6</a></li><li><a href="/news/page-7.htm">7</a></li><li><a href="/news/page-8.htm">8</a></li><li class="active"><span>9</span></li> <li class="disabled"><span>&raquo;</span></li></ul>                    </div>
+                </div>
                 <div class="col-md-3">
                     <div class="panel panel-default">
     <div class="panel-heading">
@@ -145,16 +160,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-71369.htm" title="中牧疫苗生物官网查询（中牧实业股份有限公司疫苗）">中牧疫苗生物官网查询（中牧实业股份有限公司疫苗）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-3-29-clash-v2ray-ss-ssr.htm" title="Win VPN | 3月29日22.6M/S|免费Clash/Shadowrocket/V2ray/SSR免费节点订阅分享">Win VPN | 3月29日22.6M/S|免费Clash/Shadowrocket/V2ray/SSR免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-4-8-free-node-subscribe-links.htm" title="Win VPN | 4月8日20.9M/S|免费V2ray/Clash/SSR/Shadowrocket免费节点订阅分享">Win VPN | 4月8日20.9M/S|免费V2ray/Clash/SSR/Shadowrocket免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-3-18-clash-v2ray-ss-ssr.htm" title="Win VPN | 3月18日22.4M/S|免费V2ray/Clash/SSR/Shadowrocket免费节点订阅分享">Win VPN | 3月18日22.4M/S|免费V2ray/Clash/SSR/Shadowrocket免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/news/article-76723.htm" title="MySQL的聚合函数是否忽略NULL">MySQL的聚合函数是否忽略NULL</a></li>
-                        <li class="py-2"><a href="/news/article-68760.htm" title="手工宠物零食怎么创业 手工宠物零食怎么创业PPT">手工宠物零食怎么创业 手工宠物零食怎么创业PPT</a></li>
-                        <li class="py-2"><a href="/news/article-78771.htm" title="深入理解mmap&#8211;内核代码分析及驱动demo示例">深入理解mmap&#8211;内核代码分析及驱动demo示例</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-4-1-free-subscribe-node.htm" title="Win VPN | 4月1日20.2M/S|免费V2ray/SSR/Clash/Shadowrocket免费节点订阅分享">Win VPN | 4月1日20.2M/S|免费V2ray/SSR/Clash/Shadowrocket免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/news/article-71368.htm" title="Kafka消费者rebalanced异常分析">Kafka消费者rebalanced异常分析</a></li>
-                        <li class="py-2"><a href="/news/article-75369.htm" title="Docker从入门到放弃(1) Docker简介与安装_在线工具">Docker从入门到放弃(1) Docker简介与安装_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-66230.htm" title="Python生成迷宫">Python生成迷宫</a></li>
+                        <li class="py-2"><a href="/news/article-82226.htm" title="Apache Kafka消息传递可靠性分析">Apache Kafka消息传递可靠性分析</a></li>
+                        <li class="py-2"><a href="/news/article-73353.htm" title="编码练习：JavaScript 点击下拉列表显示相关信息">编码练习：JavaScript 点击下拉列表显示相关信息</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-30-node-share-links.htm" title="Win VPN | 3月30日19.5M/S|免费Clash/SSR/Shadowrocket/V2ray免费节点订阅分享">Win VPN | 3月30日19.5M/S|免费Clash/SSR/Shadowrocket/V2ray免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-88682.htm" title="动物疫苗公司排名前十（动物疫苗上市公司排名）">动物疫苗公司排名前十（动物疫苗上市公司排名）</a></li>
+                        <li class="py-2"><a href="/news/article-72031.htm" title="单链表之按顺序插入元素">单链表之按顺序插入元素</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-14-free-v2ray.htm" title="Win VPN | 3月14日23M/S|免费SSR/Shadowrocket/Clash/V2ray免费节点订阅分享">Win VPN | 3月14日23M/S|免费SSR/Shadowrocket/Clash/V2ray免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-4-node-share-links.htm" title="Win VPN | 3月4日18.2M/S|免费Shadowrocket/Clash/SSR/V2ray免费节点订阅分享">Win VPN | 3月4日18.2M/S|免费Shadowrocket/Clash/SSR/V2ray免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-66868.htm" title="人用疫苗和兽用疫苗研发区别 人用疫苗和兽用疫苗研发区别在哪">人用疫苗和兽用疫苗研发区别 人用疫苗和兽用疫苗研发区别在哪</a></li>
+                        <li class="py-2"><a href="/news/article-91672.htm" title="猫体外驱虫药被猫舔到会怎样?（体外驱虫药被猫咪舔舐了怎么办）">猫体外驱虫药被猫舔到会怎样?（体外驱虫药被猫咪舔舐了怎么办）</a></li>
                     </ul>
     </div>
 </div>
@@ -166,7 +181,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">91</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
