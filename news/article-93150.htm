@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://winvpn.github.io/news/article-93150.htm" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flutter实现心动的动画特效_Android</title>
+        <meta name="description" content="目录  实现动画  混入 SingleTickerProviderStateMixin 创建动画  抽离成小组件  完整代码    为了追求更好的用户体验，有时候我们需要一个类似心跳一样跳动着的控件来" />
+        <link rel="icon" href="/assets/website/img/bifrostvnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Win VPN 订阅机场节点中文网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://winvpn.github.io/news/article-93150.htm" />
+    <meta property="og:site_name" content="Win VPN 订阅机场节点中文网" />
+    <meta property="og:title" content="Flutter实现心动的动画特效_Android" />
+    <meta property="og:image" content="https://winvpn.github.io/uploads/20240911/ba93d06dabb27d728d83b2f4abf51055.webp" />
+        <meta property="og:release_date" content="2025-04-11T08:56:31" />
+    <meta property="og:updated_time" content="2025-04-11T08:56:31" />
+        <meta property="og:description" content="目录  实现动画  混入 SingleTickerProviderStateMixin 创建动画  抽离成小组件  完整代码    为了追求更好的用户体验，有时候我们需要一个类似心跳一样跳动着的控件来" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Flutter实现心动的动画特效_Android">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+
+    <link rel="stylesheet" href="/assets/website/css/bifrostvnode/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/bifrostvnode/meanmenu.css">
+    <link rel="stylesheet" href="/assets/website/css/bifrostvnode/boxicons.min.css">
+    <link rel="stylesheet" href="/assets/website/css/bifrostvnode/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/bifrostvnode/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/bifrostvnode/magnific-popup.min.css">
+    <link rel="stylesheet" href="/assets/website/css/bifrostvnode/animate.css">
+    <link rel="stylesheet" href="/assets/website/css/bifrostvnode/style.css">
+    <link rel="stylesheet" href="/assets/website/css/bifrostvnode/responsive.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4DEHHM297E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4DEHHM297E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <div class="loader">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="spinner">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar-area fixed-top">
+        <div class="mobile-nav">
+            <a href="/" class="logo">
+                Bifrostv Node
+            </a>
+        </div>
+        <div class="main-nav">
+            <div class="container">
+                <nav class="navbar navbar-expand-md navbar-light">
+                                        <a class="navbar-brand" href="/">
+                        <span>Win VPN</span>
+                    </a>
+                                        <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto">
+                                                        <li class="nav-item">
+                                <a href="/" class="nav-link">首页</a>
+                            </li>
+                                                        <li class="nav-item">
+                                <a href="/free-nodes/" class="nav-link">免费节点</a>
+                            </li>
+                                                        <li class="nav-item">
+                                <a href="/paid-subscribe/" class="nav-link">推荐机场</a>
+                            </li>
+                                                        <li class="nav-item">
+                                <a href="/news/" class="nav-link">新闻资讯</a>
+                            </li>
+                                                        <li class="nav-item">
+                                <a href="/client.htm" class="nav-link">客户端</a>
+                            </li>
+                                                    </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="page-title-area">
+        <img src="/assets/website/img/bifrostvnode/footer-car.png" alt="Title">
+        <div class="container">
+            <div class="page-title-content">
+                <h1>Flutter实现心动的动画特效_Android</h1>
+                <ul>
+                    <li>
+                        <a href="/">首页</a>
+                    </li>
+                    <li>
+                        <i class='bx bx-chevron-right'></i>
+                    </li>
+                    <li>
+                        <a href="/news/">新闻资讯</a>
+                    </li>
+                    <li>
+                        <i class='bx bx-chevron-right'></i>
+                    </li>
+                    <li>正文</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <section class="process-area pt-100 pb-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">实现动画</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_0_0" rel="nofollow">混入 SingleTickerProviderStateMixin</a></li> <li><a href="#_lab2_0_1" rel="nofollow">创建动画</a></li> </ul> <li><a href="#_label1" rel="nofollow">抽离成小组件</a></li> <ul class="second_class_ul"></ul> <li><a href="#_label2" rel="nofollow">完整代码</a></li> <ul class="second_class_ul"></ul> </ul> </div> <p>为了追求更好的用户体验，有时候我们需要一个类似心跳一样跳动着的控件来吸引用户的注意力，这是一个小小的优化需求，但是在 Flutter 里动画两件套就像裹脚布一样臭长，所以需要像封装一个 AnimatedWidget，解放生产力。</p> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>实现动画</h2> <p class="maodian"><a name="_lab2_0_0" rel="nofollow"></a></p> <h3>混入 SingleTickerProviderStateMixin</h3> <p>当创建一个 AnimationController 时，需要传递一个<code>vsync</code>参数，存在<code>vsync</code>时会防止动画的UI不在当前屏幕时消耗不必要的资源。 通过混入 SingleTickerProviderStateMixin 。</p> <div class="ay1code"> <pre class="brush:java;">class _MyHomePageState extends State&lt;MyHomePage&gt;  with SingleTickerProviderStateMixin{}</pre> </div> <p class="maodian"><a name="_lab2_0_1" rel="nofollow"></a></p> <h3>创建动画</h3> <p>创建一个间隔将近一秒钟的动画控制器：</p> <div class="ay1code"> <pre class="brush:java;">  late final AnimationController animController;      @override    void initState() {      super.initState();      animController = AnimationController(        duration: const Duration(milliseconds: 800),        vsync: this,      );      }</pre> </div> <p>心跳动画是从小变大，再变小，所以需要一个值大小变化的动画：</p> <div class="ay1code"> <pre class="brush:java;">  late final Animation&lt;double&gt; animation;      @override    void initState() {      super.initState();      animController = AnimationController(        duration: const Duration(milliseconds: 800),        vsync: this,      );       animation = Tween&lt;double&gt;(        begin: 0.9,        end: 1.05,      );      }</pre> </div> <p>心跳是不间断的，所以需要监听动画完成时恢复动画，再继续开始动画：</p> <div class="ay1code"> <pre class="brush:java;">    animation = Tween&lt;double&gt;(        begin: 0.9,        end: 1.05,      ).animate(animController)        ..addListener(() {          setState(() {});        })        ..addStatusListener((status) {          if (status == AnimationStatus.completed) {            animController.reverse();          } else if (status == AnimationStatus.dismissed) {            animController.forward();          }        });</pre> </div> <p>使用缩放控件：</p> <div class="ay1code"> <pre class="brush:java;">Transform.scale(                  scale: animation.value,                  child: const FlutterLogo(                    size: 80,                  ),                ),</pre> </div> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220424/9716bcbd9721fdd223eec8edba916681.jpg"></p> <p>为了跳动效果，突出跳动动画，把缩回去的时间改短：</p> <div class="ay1code"> <pre class="brush:java;">   animController = AnimationController(        reverseDuration: const Duration(milliseconds: 700),        duration: const Duration(milliseconds: 800),        vsync: this,      );</pre> </div> <p>最后别忘了释放资源：</p> <div class="ay1code"> <pre class="brush:java;">  @override    void dispose() {      animController.dispose();      super.dispose();    }</pre> </div> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>抽离成小组件</h2> <p>为了每次用到类似的动画只需引入即可，需要分离动画和显示的组件。新建一个<code>BounceWidget</code>，包含动画，然后可以传入UI组件：</p> <div class="ay1code"> <pre class="brush:java;">class BounceWidget extends StatefulWidget {    final Widget child;      const BounceWidget({      Key? key,      required this.child,    }) : super(key: key);      @override    State&lt;BounceWidget&gt; createState() =&gt; _BounceWidgetState();  }</pre> </div> <p>继续实现动画：</p> <div class="ay1code"> <pre class="brush:java;">class _BounceWidgetState extends State&lt;BounceWidget&gt;      with SingleTickerProviderStateMixin {    late Animation&lt;double&gt; animation;    late AnimationController animController;      @override    void initState() {      super.initState();      animController = AnimationController(        reverseDuration: const Duration(milliseconds: 700),        duration: const Duration(milliseconds: 800),        vsync: this,      );      animation = Tween&lt;double&gt;(        begin: 0.9,        end: 1.05,      ).animate(animController)        ..addListener(() {          setState(() {});        })        ..addStatusListener((status) {          if (status == AnimationStatus.completed) {            animController.reverse();          } else if (status == AnimationStatus.dismissed) {            animController.forward();          }        });      animController.forward();    }      @override    Widget build(BuildContext context) {      return Transform.scale(        scale: animation.value,        child: widget.child,      );    }      @override    void dispose() {      animController.dispose();      super.dispose();    }  }</pre> </div> <p>去引入动画：</p> <div class="ay1code"> <pre class="brush:java;">  Center(                child: BounceWidget(                  child: FlutterLogo(                    size: 80,                  ),                ),</pre> </div> <p class="maodian"><a name="_label2" rel="nofollow"></a></p> <h2>完整代码</h2> <div class="ay1code"> <pre class="brush:java;">void main() {    runApp(const MyApp());  }    class MyApp extends StatelessWidget {    const MyApp({Key? key}) : super(key: key);      @override    Widget build(BuildContext context) {      return MaterialApp(        title: 'Flutter Demo',        theme: ThemeData(          primarySwatch: Colors.blue,        ),        home: const MyHomePage(title: 'Flutter Demo Home Page'),      );    }  }    class MyHomePage extends StatefulWidget {    const MyHomePage({Key? key, required this.title}) : super(key: key);      final String title;      @override    State&lt;MyHomePage&gt; createState() =&gt; _MyHomePageState();  }    class _MyHomePageState extends State&lt;MyHomePage&gt; {    @override    Widget build(BuildContext context) {      return Scaffold(        appBar: AppBar(          title: Text(widget.title),        ),        body: Padding(          padding: const EdgeInsets.only(top: 80, left: 16),          child: Column(            crossAxisAlignment: CrossAxisAlignment.start,            children: const &lt;Widget&gt;[              Text(                "心动的",                style: TextStyle(                  fontSize: 28,                  color: Colors.black,                ),              ),              Text(                "感觉",                style: TextStyle(                  fontSize: 48,                  color: Colors.black,                ),              ),              Center(                child: BounceWidget(                  child: FlutterLogo(                    size: 80,                  ),                ),              ),            ],          ),        ),      );    }  }  </pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-92397.htm">猫咪三针疫苗大概多少钱啊（猫三针疫苗多少钱一只）</a></p>
+                                        <p>下一个：<a href="/news/article-93151.htm">上海宠物医院领养狗狗（上海地区宠物领养）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-66867.htm" title="react项目配置postcss-px2rem-exclude">react项目配置postcss-px2rem-exclude</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-2-free-node-subscribe.htm" title="Win VPN | 4月2日18.1M/S|免费SSR/V2ray/Clash/Shadowrocket免费节点订阅分享">Win VPN | 4月2日18.1M/S|免费SSR/V2ray/Clash/Shadowrocket免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-76723.htm" title="MySQL的聚合函数是否忽略NULL">MySQL的聚合函数是否忽略NULL</a></li>
+                        <li class="py-2"><a href="/news/article-71369.htm" title="中牧疫苗生物官网查询（中牧实业股份有限公司疫苗）">中牧疫苗生物官网查询（中牧实业股份有限公司疫苗）</a></li>
+                        <li class="py-2"><a href="/news/article-84370.htm" title="动物医院属于什么性质的单位 动物医院属于什么性质的单位类型">动物医院属于什么性质的单位 动物医院属于什么性质的单位类型</a></li>
+                        <li class="py-2"><a href="/news/article-74714.htm" title="Django获取当前页面url">Django获取当前页面url</a></li>
+                        <li class="py-2"><a href="/news/article-86513.htm" title="天津宠物狗领养中心电话号码（天津狗狗领养中心地址）">天津宠物狗领养中心电话号码（天津狗狗领养中心地址）</a></li>
+                        <li class="py-2"><a href="/news/article-73352.htm" title="正则表达式 \b \B，单词边界的匹配">正则表达式 \b \B，单词边界的匹配</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-3-clash-v2ray-ss-ssr.htm" title="Win VPN | 4月3日20.2M/S|免费SSR/Shadowrocket/Clash/V2ray免费节点订阅分享">Win VPN | 4月3日20.2M/S|免费SSR/Shadowrocket/Clash/V2ray免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-68760.htm" title="手工宠物零食怎么创业 手工宠物零食怎么创业PPT">手工宠物零食怎么创业 手工宠物零食怎么创业PPT</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">39</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">91</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer>
+        <div class="container">
+            <div class="copyright-area">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="copyright-item text-center">
+                                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">Win VPN 订阅机场节点中文网</a> 版权所有
+                            <br />
+                            Powered by WordPress
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script data-cfasync="false" src="/assets/website/js/frontend/bifrostvnode/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/bifrostvnode/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/bifrostvnode/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/bifrostvnode/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/bifrostvnode/jquery.meanmenu.js"></script>
+    <script src="/assets/website/js/frontend/bifrostvnode/jquery.mixitup.min.js"></script>
+    <script src="/assets/website/js/frontend/bifrostvnode/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/bifrostvnode/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/website/js/frontend/bifrostvnode/jquery.ajaxchimp.min.js"></script>
+    <script src="/assets/website/js/frontend/bifrostvnode/form-validator.min.js"></script>
+    <script src="/assets/website/js/frontend/bifrostvnode/contact-form-script.js"></script>
+    <script src="/assets/website/js/frontend/bifrostvnode/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/bifrostvnode/custom.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
