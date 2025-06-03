@@ -1,4 +1,4 @@
-# Win VPN | 5月30日20.2M/S|免费Clash/Shadowrocket/V2ray/SSR免费节点订阅分享  更新时间 2025-05-30 09:29:57
+# Win VPN | 6月3日19.9M/S|免费Clash/Shadowrocket/SSR/V2ray免费节点订阅分享  更新时间 2025-06-03 09:47:17
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://winvpn.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,23 +9,23 @@
 
 ### Clash订阅链接
 
-- https://winvpn.github.io/uploads/2025/05/0-20250530.yaml
-- https://winvpn.github.io/uploads/2025/05/1-20250530.yaml
-- https://winvpn.github.io/uploads/2025/05/2-20250530.yaml
-- https://winvpn.github.io/uploads/2025/05/3-20250530.yaml
-- https://winvpn.github.io/uploads/2025/05/4-20250530.yaml
+- https://winvpn.github.io/uploads/2025/06/0-20250603.yaml
+- https://winvpn.github.io/uploads/2025/06/1-20250603.yaml
+- https://winvpn.github.io/uploads/2025/06/2-20250603.yaml
+- https://winvpn.github.io/uploads/2025/06/3-20250603.yaml
+- https://winvpn.github.io/uploads/2025/06/4-20250603.yaml
 
 ### V2ray订阅链接
 
-- https://winvpn.github.io/uploads/2025/05/0-20250530.txt
-- https://winvpn.github.io/uploads/2025/05/1-20250530.txt
-- https://winvpn.github.io/uploads/2025/05/2-20250530.txt
-- https://winvpn.github.io/uploads/2025/05/3-20250530.txt
-- https://winvpn.github.io/uploads/2025/05/4-20250530.txt
+- https://winvpn.github.io/uploads/2025/06/0-20250603.txt
+- https://winvpn.github.io/uploads/2025/06/1-20250603.txt
+- https://winvpn.github.io/uploads/2025/06/2-20250603.txt
+- https://winvpn.github.io/uploads/2025/06/3-20250603.txt
+- https://winvpn.github.io/uploads/2025/06/4-20250603.txt
 
 ### Sing-box订阅链接
 
-- https://winvpn.github.io/uploads/2025/05/20250530.json
+- https://winvpn.github.io/uploads/2025/06/20250603.json
 
 ## 更多clash节点订阅 ：
 
