@@ -162,12 +162,28 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
 <div class="clearfix"></div>
 <div class="col-md-12 mt-5">
         <p>上一个：<a href="/free-nodes/2025-12-5-vpn-github.htm">Win VPN | 12月5日19.9M/S|免费Singbox节点/V2ray节点/SSR节点/Shadowrocket节点/Clash节点免费节点订阅分享</a></p>
+        <p>下一个：<a href="/free-nodes/2025-12-7-vpn-proxy.htm">Win VPN | 12月7日20.2M/S|免费Singbox节点/Shadowrocket节点/V2ray节点/Clash节点/SSR节点免费节点订阅分享</a></p>
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>VMess 与 Shadowsocks 哪个更安全？</h5></div>
+    <div class="panel-heading"><h5>Nekobox 导入 Clash 订阅后规则丢失，可能原因？</h5></div>
     <div class="panel-body">
-        VMess 使用动态认证机制，防止重放攻击，而 Shadowsocks 依赖静态密钥。总体来说，VMess 的安全性更强，尤其在应对 DPI 检测和中间人攻击时表现更优。<hr />    </div>
+        部分客户端在解析订阅时只保留节点信息而忽略 rules 或 proxies-group，建议使用支持完整解析的订阅转换器（如 sub-converter）先将订阅转换为兼容格式再导入，或手动合并规则文件。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>PassWall2 如何结合延迟选择最优节点？</h5></div>
+    <div class="panel-body">
+        PassWall2 定期测速节点延迟，并结合策略组自动选择延迟最低的节点。无需手动操作即可保证网页、视频和游戏流量快速稳定访问，提高整体网络体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Sing-box 如何实现精确域名分流？</h5></div>
+    <div class="panel-body">
+        Sing-box 可以按域名设置分流规则，将不同流量发送到指定节点。结合策略组使用，可实现网页、视频和游戏流量精准分配，提高访问速度和网络稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>VMess MUX 功能如何改善短连接延迟？</h5></div>
+    <div class="panel-body">
+        VMess MUX 多路复用可以将多个短连接共享同一 TCP 或 QUIC 隧道，减少重复握手和连接延迟，特别适合游戏、即时通讯或频繁请求的场景，有效提升响应速度。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Clash 的规则模式有哪些？</h5></div>
@@ -175,14 +191,19 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         Clash 提供三种主要模式：Global（全局代理）、Rule（规则代理）和Direct（直连）。全局模式会让所有流量通过代理；规则模式根据规则文件自动分流；直连模式则完全不经过代理。用户可根据需求灵活切换。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>VMess 与 Shadowsocks 哪个更安全？</h5></div>
+    <div class="panel-body">
+        VMess 使用动态认证机制，防止重放攻击，而 Shadowsocks 依赖静态密钥。总体来说，VMess 的安全性更强，尤其在应对 DPI 检测和中间人攻击时表现更优。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Hiddify Next 是否兼容 Clash 或 V2Ray 配置文件？</h5></div>
+    <div class="panel-body">
+        Hiddify Next 支持部分 Clash 与 Xray 订阅格式，但建议使用其官方订阅格式以获得完整兼容。若订阅转换异常，可使用 Hiddify 提供的在线转换工具重新生成配置文件导入。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>WinXray 的内核能否替换？</h5></div>
     <div class="panel-body">
         可以。WinXray 的内核文件独立存在于程序目录中，用户可替换为最新的 v2ray-core 或 xray-core 文件以获取更好的性能与协议支持，但需保持版本兼容。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Nekobox 导入 Clash 订阅后规则丢失，可能原因？</h5></div>
-    <div class="panel-body">
-        部分客户端在解析订阅时只保留节点信息而忽略 rules 或 proxies-group，建议使用支持完整解析的订阅转换器（如 sub-converter）先将订阅转换为兼容格式再导入，或手动合并规则文件。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Shadowrocket 的节点测速结果如何优化网络体验？</h5></div>
@@ -192,27 +213,7 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Shadowrocket 能否自动更新订阅？</h5></div>
     <div class="panel-body">
-        支持。Shadowrocket 可以设置定时更新周期，例如每隔 12 小时或每天自动刷新订阅链接，确保节点列表保持最新状态。这样无需手动更新即可长期稳定使用。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>PassWall2 如何结合延迟选择最优节点？</h5></div>
-    <div class="panel-body">
-        PassWall2 定期测速节点延迟，并结合策略组自动选择延迟最低的节点。无需手动操作即可保证网页、视频和游戏流量快速稳定访问，提高整体网络体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>VMess MUX 功能如何改善短连接延迟？</h5></div>
-    <div class="panel-body">
-        VMess MUX 多路复用可以将多个短连接共享同一 TCP 或 QUIC 隧道，减少重复握手和连接延迟，特别适合游戏、即时通讯或频繁请求的场景，有效提升响应速度。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Sing-box 如何实现精确域名分流？</h5></div>
-    <div class="panel-body">
-        Sing-box 可以按域名设置分流规则，将不同流量发送到指定节点。结合策略组使用，可实现网页、视频和游戏流量精准分配，提高访问速度和网络稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Hiddify Next 是否兼容 Clash 或 V2Ray 配置文件？</h5></div>
-    <div class="panel-body">
-        Hiddify Next 支持部分 Clash 与 Xray 订阅格式，但建议使用其官方订阅格式以获得完整兼容。若订阅转换异常，可使用 Hiddify 提供的在线转换工具重新生成配置文件导入。    </div>
+        支持。Shadowrocket 可以设置定时更新周期，例如每隔 12 小时或每天自动刷新订阅链接，确保节点列表保持最新状态。这样无需手动更新即可长期稳定使用。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -241,16 +242,16 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-11-29-free-vpn-node.htm" title="Win VPN | 11月29日22.4M/S|免费SSR节点/V2ray节点/Shadowrocket节点/Singbox节点/Clash节点免费节点订阅分享">Win VPN | 11月29日22.4M/S|免费SSR节点/V2ray节点/Shadowrocket节点/Singbox节点/Clash节点免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-12-8-vpn-github.htm" title="Win VPN | 12月8日20.1M/S|免费V2ray节点/Clash节点/SSR节点/Singbox节点/Shadowrocket节点免费节点订阅分享">Win VPN | 12月8日20.1M/S|免费V2ray节点/Clash节点/SSR节点/Singbox节点/Shadowrocket节点免费节点订阅分享</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-11-9-vpn-github.htm" title="Win VPN | 11月9日19.3M/S|免费Clash节点/Singbox节点/SSR节点/Shadowrocket节点/V2ray节点免费节点订阅分享">Win VPN | 11月9日19.3M/S|免费Clash节点/Singbox节点/SSR节点/Shadowrocket节点/V2ray节点免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-14-free-node-subscribe.htm" title="Win VPN | 11月14日20.2M/S|免费Clash节点/V2ray节点/Shadowrocket节点/Singbox节点/SSR节点免费节点订阅分享">Win VPN | 11月14日20.2M/S|免费Clash节点/V2ray节点/Shadowrocket节点/Singbox节点/SSR节点免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-20-vpn-proxy.htm" title="Win VPN | 11月20日22.5M/S|免费Clash节点/V2ray节点/Shadowrocket节点/SSR节点/Singbox节点免费节点订阅分享">Win VPN | 11月20日22.5M/S|免费Clash节点/V2ray节点/Shadowrocket节点/SSR节点/Singbox节点免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-11-vpn-github.htm" title="Win VPN | 11月11日18M/S|免费Shadowrocket节点/Clash节点/Singbox节点/V2ray节点/SSR节点免费节点订阅分享">Win VPN | 11月11日18M/S|免费Shadowrocket节点/Clash节点/Singbox节点/V2ray节点/SSR节点免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-12-3-share-vpn.htm" title="Win VPN | 12月3日22.9M/S|免费Clash节点/SSR节点/Shadowrocket节点/V2ray节点/Singbox节点免费节点订阅分享">Win VPN | 12月3日22.9M/S|免费Clash节点/SSR节点/Shadowrocket节点/V2ray节点/Singbox节点免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-6-free-node-subscribe.htm" title="Win VPN | 11月6日20.6M/S|免费V2ray节点/Clash节点/SSR节点/Shadowrocket节点/Singbox节点免费节点订阅分享">Win VPN | 11月6日20.6M/S|免费V2ray节点/Clash节点/SSR节点/Shadowrocket节点/Singbox节点免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-12-2-free-node-subscribe-links.htm" title="Win VPN | 12月2日18M/S|免费V2ray节点/Singbox节点/Shadowrocket节点/SSR节点/Clash节点免费节点订阅分享">Win VPN | 12月2日18M/S|免费V2ray节点/Singbox节点/Shadowrocket节点/SSR节点/Clash节点免费节点订阅分享</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-11-23-node-share.htm" title="Win VPN | 11月23日20.6M/S|免费Singbox节点/V2ray节点/SSR节点/Clash节点/Shadowrocket节点免费节点订阅分享">Win VPN | 11月23日20.6M/S|免费Singbox节点/V2ray节点/SSR节点/Clash节点/Shadowrocket节点免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-7-free-vpn-node.htm" title="Win VPN | 11月7日22.1M/S|免费V2ray节点/Shadowrocket节点/Clash节点/SSR节点/Singbox节点免费节点订阅分享">Win VPN | 11月7日22.1M/S|免费V2ray节点/Shadowrocket节点/Clash节点/SSR节点/Singbox节点免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-12-6-node-share-links.htm" title="Win VPN | 12月6日21.9M/S|免费V2ray节点/Singbox节点/SSR节点/Shadowrocket节点/Clash节点免费节点订阅分享">Win VPN | 12月6日21.9M/S|免费V2ray节点/Singbox节点/SSR节点/Shadowrocket节点/Clash节点免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-8-free-node-subscribe.htm" title="Win VPN | 11月8日21.3M/S|免费Shadowrocket节点/V2ray节点/Singbox节点/Clash节点/SSR节点免费节点订阅分享">Win VPN | 11月8日21.3M/S|免费Shadowrocket节点/V2ray节点/Singbox节点/Clash节点/SSR节点免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-12-free-vpn.htm" title="Win VPN | 11月12日18.1M/S|免费V2ray节点/Clash节点/Singbox节点/SSR节点/Shadowrocket节点免费节点订阅分享">Win VPN | 11月12日18.1M/S|免费V2ray节点/Clash节点/Singbox节点/SSR节点/Shadowrocket节点免费节点订阅分享</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-11-5-free-node-subscribe-links.htm" title="Win VPN | 11月5日18M/S|免费Singbox节点/SSR节点/Clash节点/V2ray节点/Shadowrocket节点免费节点订阅分享">Win VPN | 11月5日18M/S|免费Singbox节点/SSR节点/Clash节点/V2ray节点/Shadowrocket节点免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-12-4-share-vpn.htm" title="Win VPN | 12月4日19.4M/S|免费Singbox节点/Clash节点/V2ray节点/SSR节点/Shadowrocket节点免费节点订阅分享">Win VPN | 12月4日19.4M/S|免费Singbox节点/Clash节点/V2ray节点/SSR节点/Shadowrocket节点免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-11-vpn-github.htm" title="Win VPN | 11月11日18M/S|免费Shadowrocket节点/Clash节点/Singbox节点/V2ray节点/SSR节点免费节点订阅分享">Win VPN | 11月11日18M/S|免费Shadowrocket节点/Clash节点/Singbox节点/V2ray节点/SSR节点免费节点订阅分享</a></li>
                     </ul>
     </div>
 </div>
@@ -262,7 +263,7 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-12/" title="2025-12 归档">2025-12</a></h4>
+                <h4><span class="badge" style="float: right;">13</span> <a href="/date/2025-12/" title="2025-12 归档">2025-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">23</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
